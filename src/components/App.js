@@ -1,13 +1,18 @@
 import React, { useState, useEffect } from 'react'
+import Debug from 'debug'
 import * as copy from 'copy-to-clipboard'
 import classnames from 'classnames/bind'
 import { createSnackbar } from '@snackbar/core'
 import querystring from 'querystring'
+import cache from 'yields-store'
 import generate from '../utils/generate'
 import Input from './Input'
 import Checkbox from './Checkbox'
 import Icon from './Icon'
 import styles from './App.module.less'
+import { CACHE_KEYS } from '../constants'
+
+const debug = Debug('app')
 
 const cx = classnames.bind(styles)
 
@@ -37,23 +42,38 @@ const App = () => {
   }
 
   useEffect(() => {
-    const qs = querystring.parse(window.location.search.slice(1))
-    const check = (name) => {
-      if (!(name in qs)) {
-        return
+    const apply = (parser) => {
+      const { length, checkboxes } = parser()
+      debug('apply', length, checkboxes)
+      if (length) {
+        setLengthFromString(length)
       }
-      setCheckboxes((checkboxes) => ({
-        ...checkboxes,
-        [name]: qs[name] !== 'false',
-      }))
+      if (checkboxes && Object.keys(checkboxes).length) {
+        setCheckboxes((original) => ({
+          ...original,
+          ...checkboxes,
+        }))
+      }
     }
-    if (qs.length) {
-      setLengthFromString(qs.length)
-    }
-    check('uppercase')
-    check('lowercase')
-    check('numbers')
-    check('symbols')
+
+    // parse localStorage
+    apply(() => cache(CACHE_KEYS.CONFIG) || {})
+
+    // parse querystring
+    apply(() => {
+      const qs = querystring.parse(window.location.search.slice(1))
+      let checkboxes = {}
+      Object.keys(DEFAULT_CHECKBOXES).forEach((name) => {
+        if (!(name in qs)) {
+          return
+        }
+        checkboxes[name] = qs[name] !== 'false'
+      })
+      return {
+        length: qs.length,
+        checkboxes,
+      }
+    })
   }, [])
 
   useEffect(() => submit(), [length, checkboxes])
@@ -61,6 +81,11 @@ const App = () => {
   const submit = () => {
     try {
       setPassword(generate({ length, characters: checkboxes }))
+      debug('submit', length, checkboxes)
+      cache(CACHE_KEYS.CONFIG, {
+        length,
+        checkboxes,
+      })
     } catch (error) {
       setPassword('')
       console.error(error)
