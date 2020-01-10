@@ -8,12 +8,12 @@ const Checkbox = ({ label, checked, onChange, ...props }) => {
   const [ isChecked, setIsChecked ] = useState(checked)
 
   useEffect(() => {
-    onChange(isChecked)
-  }, [isChecked])
+    setIsChecked(checked)
+  }, [checked])
 
   const inputChangeHandler = (e) => onChange(e.target.value)
 
-  const clickHandler = () => setIsChecked((isChecked) => !isChecked)
+  const clickHandler = () => onChange(!checked)
 
   return (
     <div className={cx('checkbox')} onClick={clickHandler}>
