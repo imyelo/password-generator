@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 import * as copy from 'copy-to-clipboard'
 import classnames from 'classnames/bind'
 import { createSnackbar } from '@snackbar/core'
+import querystring from 'querystring'
 import generate from '../utils/generate'
 import Input from './Input'
 import Checkbox from './Checkbox'
@@ -11,7 +12,7 @@ import styles from './App.module.less'
 const cx = classnames.bind(styles)
 
 const SNACKBAR_TIMEOUT = 2000
-const isNumber = (n) => /^\d*$/.test(n)
+const isInteger = (n) => /^\d*$/.test(n)
 const MAX_LENGTH = 1024
 
 const App = () => {
@@ -23,6 +24,33 @@ const App = () => {
     symbols: false,
   })
   const [ password, setPassword ] = useState('')
+
+  const setLengthFromString = (value) => {
+    if (!isInteger(value)) {
+      return
+    }
+    setLength(Math.min(MAX_LENGTH, +value))
+  }
+
+  useEffect(() => {
+    const qs = querystring.parse(window.location.search.slice(1))
+    const check = (name) => {
+      if (!(name in qs)) {
+        return
+      }
+      setCheckboxs((checkboxs) => ({
+        ...checkboxs,
+        [name]: qs[name] !== 'false',
+      }))
+    }
+    if (qs.length) {
+      setLengthFromString(qs.length)
+    }
+    check('uppercase')
+    check('lowercase')
+    check('numbers')
+    check('symbols')
+  }, [])
 
   useEffect(() => submit(), [length, checkboxs])
 
@@ -36,11 +64,7 @@ const App = () => {
   }
 
   const lengthChangeHandler = (e) => {
-    const value = e.target.value
-    if (!isNumber(value)) {
-      return
-    }
-    setLength(Math.min(MAX_LENGTH, +value))
+    setLengthFromString(e.target.value)
   }
 
   const checkboxChangeHandler = (name) => (value) => {
