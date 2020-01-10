@@ -10,7 +10,8 @@
   "scripts": {
     "build": "poi --prod",
     "start": "poi --serve",
-    "precommit": "lint-staged"
+    "precommit": "lint-staged",
+    "gh-pages": "npm run build && gh-pages -t -d ./dist"
   },
   "author": "yelo",
   "license": "Apache-2.0",
@@ -19,6 +20,7 @@
   },
   "homepage": "https://github.com/imyelo/password-generator#readme",
   "devDependencies": {
+    "gh-pages": "^2.2.0",
     "less": "^3.10.3",
     "less-loader": "^5.0.0",
     "lint-staged": "^8.2.1",
