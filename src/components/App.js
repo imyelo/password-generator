@@ -17,7 +17,7 @@ const MAX_LENGTH = 1024
 
 const App = () => {
   const [ length, setLength ] = useState(16)
-  const [ checkboxs, setCheckboxs ] = useState({
+  const [ checkboxes, setCheckboxes ] = useState({
     uppercase: true,
     lowercase: true,
     numbers: true,
@@ -38,8 +38,8 @@ const App = () => {
       if (!(name in qs)) {
         return
       }
-      setCheckboxs((checkboxs) => ({
-        ...checkboxs,
+      setCheckboxes((checkboxes) => ({
+        ...checkboxes,
         [name]: qs[name] !== 'false',
       }))
     }
@@ -52,11 +52,11 @@ const App = () => {
     check('symbols')
   }, [])
 
-  useEffect(() => submit(), [length, checkboxs])
+  useEffect(() => submit(), [length, checkboxes])
 
   const submit = () => {
     try {
-      setPassword(generate({ length, characters: checkboxs }))
+      setPassword(generate({ length, characters: checkboxes }))
     } catch (error) {
       setPassword('')
       console.error(error)
@@ -68,8 +68,8 @@ const App = () => {
   }
 
   const checkboxChangeHandler = (name) => (value) => {
-    setCheckboxs((checkboxs) => ({
-      ...checkboxs,
+    setCheckboxes((checkboxes) => ({
+      ...checkboxes,
       [name]: value,
     }))
   }
@@ -95,11 +95,11 @@ const App = () => {
     </div>
     <form className={cx('generator')}>
       <Input label="Length" type="mobile" value={length} onChange={lengthChangeHandler} />
-      <div className={cx('checkboxs')}>
-        <Checkbox label="Uppercase" checked={checkboxs.uppercase} onChange={checkboxChangeHandler('uppercase')} />
-        <Checkbox label="Lowercase" checked={checkboxs.lowercase} onChange={checkboxChangeHandler('lowercase')} />
-        <Checkbox label="Numbers" checked={checkboxs.numbers} onChange={checkboxChangeHandler('numbers')} />
-        <Checkbox label="Symbols" checked={checkboxs.symbols} onChange={checkboxChangeHandler('symbols')} />
+      <div className={cx('checkboxes')}>
+        <Checkbox label="Uppercase" checked={checkboxes.uppercase} onChange={checkboxChangeHandler('uppercase')} />
+        <Checkbox label="Lowercase" checked={checkboxes.lowercase} onChange={checkboxChangeHandler('lowercase')} />
+        <Checkbox label="Numbers" checked={checkboxes.numbers} onChange={checkboxChangeHandler('numbers')} />
+        <Checkbox label="Symbols" checked={checkboxes.symbols} onChange={checkboxChangeHandler('symbols')} />
       </div>
     </form>
     <div className={cx('result')} onClick={resultClickHandler}>
