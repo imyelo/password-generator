@@ -27,6 +27,7 @@ const App = () => {
     try {
       setPassword(generate({ length, characters: checkboxs }))
     } catch (error) {
+      setPassword('')
       console.error(error)
     }
   }
