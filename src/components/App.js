@@ -12,17 +12,21 @@ import styles from './App.module.less'
 const cx = classnames.bind(styles)
 
 const SNACKBAR_TIMEOUT = 2000
+
+const DEFAULT_LENGTH = 16
+const DEFAULT_CHECKBOXES = {
+  uppercase: true,
+  lowercase: true,
+  numbers: true,
+  symbols: false,
+}
+
 const isInteger = (n) => /^\d*$/.test(n)
 const MAX_LENGTH = 1024
 
 const App = () => {
-  const [ length, setLength ] = useState(16)
-  const [ checkboxes, setCheckboxes ] = useState({
-    uppercase: true,
-    lowercase: true,
-    numbers: true,
-    symbols: false,
-  })
+  const [ length, setLength ] = useState(DEFAULT_LENGTH)
+  const [ checkboxes, setCheckboxes ] = useState(DEFAULT_CHECKBOXES)
   const [ password, setPassword ] = useState('')
 
   const setLengthFromString = (value) => {
