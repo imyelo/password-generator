@@ -2,7 +2,7 @@
 > 🗝️ Create a secure password in seconds, with a greater length  
 > <https://password.yelo.ooo/>
 
-![screenshot](./_media/screenshot.png)
+[![screenshot](./_media/screenshot.png)](https://password.yelo.ooo/)
 
 ## Features
 - 🔐 Cryptographically Strong Random with [Crypto WebAPI](https://developer.mozilla.org/en-US/docs/Web/API/Crypto/getRandomValues) (via [sindresorhus/crypto-random-string](https://github.com/sindresorhus/crypto-random-string)) 
