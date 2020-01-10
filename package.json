@@ -27,6 +27,7 @@
   },
   "dependencies": {
     "classnames": "^2.2.6",
+    "crypto-random-string": "^3.0.1",
     "debug": "^4.1.1",
     "olt": "0.0.1",
     "poi": "^12.7.5",
