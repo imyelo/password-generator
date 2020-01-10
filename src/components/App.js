@@ -55,6 +55,9 @@ const App = () => {
   }
 
   const resultClickHandler = () => {
+    if (!password) {
+      return
+    }
     copy(password)
     createSnackbar('Copied!', {
       timeout: SNACKBAR_TIMEOUT,
@@ -77,7 +80,7 @@ const App = () => {
     </form>
     <div className={cx('result')} onClick={resultClickHandler}>
       <div className={cx('value')}>{password}</div>
-      <div className={cx('copy')}><Icon name="copy" /></div>
+      { password ? <div className={cx('icon')}><Icon name="copy" /></div> : null }
     </div>
   </div>
 }

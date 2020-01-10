@@ -40,10 +40,20 @@
   font-size: 48px;
   display: flex;
   cursor: pointer;
+  font-style: italic;
   .value {
     width: 100%;
     padding-right: 0.5em;
     overflow: hidden;
     text-overflow: ellipsis;
+  }
+  .icon {
+    color: #ccc;
+    transition: all 200ms ease;
+  }
+  &:hover {
+    .icon {
+      color: #fff;
+    }
   }
 }
