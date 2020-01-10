@@ -1,0 +1,28 @@
+.checkbox {
+  position: relative;
+  input[type=checkbox] {
+    display: none;
+  }
+  .checkmark {
+    width: 24px;
+    height: 24px;
+    background: #fff;
+    display: inline-block;
+    margin-right: 0.5em;
+    &:after {
+      content: "";
+      position: absolute;
+    }
+  }
+  input[type=checkbox]:checked ~ .checkmark:after {
+    left: 9px;
+    top: 9px;
+    width: 4px;
+    height: 8px;
+    border: solid hsl(220,10%,10%);
+    border-width: 0 3px 3px 0;
+    -webkit-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    transform: rotate(45deg);
+  }
+}
