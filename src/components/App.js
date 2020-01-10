@@ -110,6 +110,11 @@ const App = () => {
       <div className={cx('value')}>{password}</div>
       { password ? <div className={cx('icon')}><Icon name="copy" /></div> : null }
     </div>
+    <div className={cx('copyright')}>
+      <a href="https://github.com/imyelo/password-generator" target="_blank">Source</a>
+      <span className={cx('symbol')}>&copy;</span>
+      <a href="https://yelo.cc" target="_blank">made by yelo</a>
+    </div>
   </div>
 }
 
