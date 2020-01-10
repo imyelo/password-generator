@@ -5,12 +5,12 @@ import { createSnackbar } from '@snackbar/core'
 import generate from '../utils/generate'
 import Input from './Input'
 import Checkbox from './Checkbox'
-import Button from './Button'
 import Icon from './Icon'
 import styles from './App.module.less'
 
 const cx = classnames.bind(styles)
 
+const SNACKBAR_TIMEOUT = 2000
 const isNumber = (n) => /^\d*$/.test(n)
 const MAX_LENGTH = 1024
 
@@ -50,18 +50,22 @@ const App = () => {
     }))
   }
 
-  const regenerateClickHandler = (e) => {
-    e.preventDefault()
+  const headerClickHandler = () => {
     submit()
   }
 
-  const resultClickHandler = (e) => {
+  const resultClickHandler = () => {
     copy(password)
-    createSnackbar('Copied!')
+    createSnackbar('Copied!', {
+      timeout: SNACKBAR_TIMEOUT,
+    })
   }
 
   return <div className={cx('main')}>
-    <div className={cx('header')}>Password Generator</div>
+    <div className={cx('header')} onClick={headerClickHandler}>
+      Password Generator
+      <span className={cx('icon')}><Icon name="refresh" /></span>
+    </div>
     <form className={cx('generator')}>
       <Input label="Length" type="mobile" value={length} onChange={lengthChangeHandler} />
       <div className={cx('checkboxs')}>
@@ -70,7 +74,6 @@ const App = () => {
         <Checkbox label="Numbers" checked={checkboxs.numbers} onChange={checkboxChangeHandler('numbers')} />
         <Checkbox label="Symbols" checked={checkboxs.symbols} onChange={checkboxChangeHandler('symbols')} />
       </div>
-      <Button onClick={regenerateClickHandler}>Regenerate</Button>
     </form>
     <div className={cx('result')} onClick={resultClickHandler}>
       <div className={cx('value')}>{password}</div>

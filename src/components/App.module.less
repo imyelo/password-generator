@@ -13,6 +13,18 @@
   font-weight: bold;
   line-height: 1em;
   color: #fff;
+  user-select: none;
+  cursor: pointer;
+  .icon {
+    display: inline-block;
+    margin-left: 0.5em;
+    transition: all 800ms ease;
+  }
+  &:hover {
+    .icon {
+      transform: rotate(360deg);
+    }
+  }
 }
 
 .generator {
@@ -23,6 +35,7 @@
 }
 
 .result {
+  margin: 48px 0;
   width: 100%;
   font-size: 48px;
   display: flex;
