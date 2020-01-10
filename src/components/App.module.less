@@ -25,6 +25,12 @@
 .result {
   width: 100%;
   font-size: 48px;
-  overflow: hidden;
-  text-overflow: ellipsis;
+  display: flex;
+  cursor: pointer;
+  .value {
+    width: 100%;
+    padding-right: 0.5em;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
 }

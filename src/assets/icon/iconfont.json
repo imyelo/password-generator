@@ -1,0 +1,23 @@
+{
+  "id": "1608100",
+  "name": "password-generator",
+  "font_family": "iconfont",
+  "css_prefix_text": "icon-",
+  "description": "",
+  "glyphs": [
+    {
+      "icon_id": "1898977",
+      "name": "refresh",
+      "font_class": "refresh",
+      "unicode": "e702",
+      "unicode_decimal": 59138
+    },
+    {
+      "icon_id": "10043852",
+      "name": "Copy",
+      "font_class": "copy",
+      "unicode": "e624",
+      "unicode_decimal": 58916
+    }
+  ]
+}

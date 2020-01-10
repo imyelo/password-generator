@@ -1,0 +1,25 @@
+@font-face {font-family: "iconfont";
+  src: url('iconfont.eot?t=1578672477130'); /* IE9 */
+  src: url('iconfont.eot?t=1578672477130#iefix') format('embedded-opentype'), /* IE6-IE8 */
+  url('data:application/x-font-woff2;charset=utf-8;base64,d09GMgABAAAAAAO8AAsAAAAACDQAAANtAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAHEIGVgCDBgqEHINDATYCJAMMCwgABCAFhG0HOBsLBxHVm6/IvjrgTVmXDCj4sHbMivlMcH/FfXOmioN9Hzy8ddUPqiaFxttZSb75BPraQRUuhYHYhR4APXTgM9b33YwbqkZFqDIkz4O+rRk/sNOX5lb6FiRfHKpmngdsPlBEgjrnplwoHA5QgMbYHdQt2oKUoCLWYeyClngaAvDJrCBRs3bDlhg05iQBiIH9+nTDZBToBpzAiN2KlRqxlGHkPHkbWBL8vPhK8QxIHIU5s2nvWj2p+iHnR6mm2qmch4A5nQ5g60ABBYEG0bnS0BYVBQpS+KpAN8e7aARyKre1AUPjudY/PJAIEC5maghAXiSTXBTTASR8ZF018+HGu4ABjoC7WJJyaLSbO1c8njU0v2TC1JT37t3nP2jecuX8/anVmgNpIqv2TU3Z8tL9Wg8fvjakybImTbBgVQe5cm/KcPX+aWnaXH5Qu3WftSkzrkzpz1+dWnR47/v3L23WLNjXJXLqUia98WLJ8PTlzM6WK9Xmr0ypV61KFVmzJo2zerXfeuXu9RvSHAgorW9g2pogWNDgSx3O77g6S5s7sGrqypRdq2WRBQm13/1PWH5ZLilyr39zbotsta7y43p112cpGSVW4hevZNnXqPGsXnmGNmR63bzVlg651uDqILM+es1ADFvg6jzr357bKluyodKN+mPdx7K114smVAlpi17PamUJlcgd/gxKBD+OXj+aCMbZ8Py2OU1/N2ZUtqayrJVDm9aGldssDe4XP5pIa482O2rTJo42HaIKmumtTV+lzqMrAHZ1RpUBS11X1X/t7zCqVL+SXWIV/5tAA/Bk1zsFNkvTLRkMEjozfySzY4PW2KZSaYXhMAynoic/SycB0rgGiywpvBhuSoVEJzCcCUGSRCZQGHIiNbYgOASUBBdDFfApoM76gGTDUQjtAfnNAiCIOwKSKFdAEXcHqbHPwSG17+AST4FPa5G8Y0DuyMlRNIae2j9Nnexsq82F6VcM77XRNDvAP6FxclPus3y4xg6dYk78DIUZE6tsVIHzsK5CQWVGZ340C2WactUL+U62xKFoDD21f5o62dlrb67w/VcM77XRhroq5RMap+4p91kHZC3YO9XdynPiZyjMmFhlowrosFoBoVA9bEZnfhzgC2WKmnFXgV9etL3fDpLEMXuekkIJTQ+28+N4voR/kgAAAAA=') format('woff2'),
+  url('iconfont.woff?t=1578672477130') format('woff'),
+  url('iconfont.ttf?t=1578672477130') format('truetype'), /* chrome, firefox, opera, Safari, Android, iOS 4.2+ */
+  url('iconfont.svg?t=1578672477130#iconfont') format('svg'); /* iOS 4.1- */
+}
+
+.iconfont {
+  font-family: "iconfont" !important;
+  font-size: 16px;
+  font-style: normal;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-refresh:before {
+  content: "\e702";
+}
+
+.icon-copy:before {
+  content: "\e624";
+}
+

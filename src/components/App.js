@@ -1,9 +1,12 @@
 import React, { useState, useEffect } from 'react'
+import * as copy from 'copy-to-clipboard'
 import classnames from 'classnames/bind'
+import { createSnackbar } from '@snackbar/core'
 import generate from '../utils/generate'
 import Input from './Input'
 import Checkbox from './Checkbox'
 import Button from './Button'
+import Icon from './Icon'
 import styles from './App.module.less'
 
 const cx = classnames.bind(styles)
@@ -52,6 +55,11 @@ const App = () => {
     submit()
   }
 
+  const resultClickHandler = (e) => {
+    copy(password)
+    createSnackbar('Copied!')
+  }
+
   return <div className={cx('main')}>
     <div className={cx('header')}>Password Generator</div>
     <form className={cx('generator')}>
@@ -64,8 +72,9 @@ const App = () => {
       </div>
       <Button onClick={regenerateClickHandler}>Regenerate</Button>
     </form>
-    <div className={cx('result')}>
-      {password}
+    <div className={cx('result')} onClick={resultClickHandler}>
+      <div className={cx('value')}>{password}</div>
+      <div className={cx('copy')}><Icon name="copy" /></div>
     </div>
   </div>
 }
