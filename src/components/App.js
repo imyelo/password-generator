@@ -1,5 +1,6 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import classnames from 'classnames/bind'
+import generate from '../utils/generate'
 import Input from './Input'
 import Checkbox from './Checkbox'
 import Button from './Button'
@@ -8,40 +9,44 @@ import styles from './App.module.less'
 const cx = classnames.bind(styles)
 
 const isNumber = (n) => /^\d*$/.test(n)
+const MAX_LENGTH = 1024
 
 const App = () => {
-  const [ length, setLength ] = useState(256)
+  const [ length, setLength ] = useState(16)
   const [ checkboxs, setCheckboxs ] = useState({
-    uppercase: false,
-    lowercase: false,
-    numbers: false,
+    uppercase: true,
+    lowercase: true,
+    numbers: true,
     symbols: false,
   })
   const [ password, setPassword ] = useState('')
 
+  useEffect(() => submit(), [length, checkboxs])
+
   const submit = () => {
-    // TODO
-    setPassword('SOMELETTERS')
+    try {
+      setPassword(generate({ length, characters: checkboxs }))
+    } catch (error) {
+      console.error(error)
+    }
   }
 
-  const onChangeLength = (e) => {
+  const lengthChangeHandler = (e) => {
     const value = e.target.value
     if (!isNumber(value)) {
       return
     }
-    setLength(value)
-    submit()
+    setLength(Math.min(MAX_LENGTH, +value))
   }
 
-  const onClickCheckbox = (name) => () => {
+  const checkboxChangeHandler = (name) => (value) => {
     setCheckboxs((checkboxs) => ({
       ...checkboxs,
-      [name]: !checkboxs[name],
+      [name]: value,
     }))
-    submit() // TODO: double check
   }
 
-  const onClickRegenerate = (e) => {
+  const regenerateClickHandler = (e) => {
     e.preventDefault()
     submit()
   }
@@ -49,14 +54,14 @@ const App = () => {
   return <div className={cx('main')}>
     <div className={cx('header')}>Password Generator</div>
     <form className={cx('generator')}>
-      <Input label="Length" type="mobile" value={length} onChange={onChangeLength} />
+      <Input label="Length" type="mobile" value={length} onChange={lengthChangeHandler} />
       <div className={cx('checkboxs')}>
-        <Checkbox label="Uppercase" checked={checkboxs.uppercase} onClick={onClickCheckbox('uppercase')} />
-        <Checkbox label="Lowercase" checked={checkboxs.lowercase} onClick={onClickCheckbox('lowercase')} />
-        <Checkbox label="Numbers" checked={checkboxs.numbers} onClick={onClickCheckbox('numbers')} />
-        <Checkbox label="Symbols" checked={checkboxs.symbols} onClick={onClickCheckbox('symbols')} />
+        <Checkbox label="Uppercase" checked={checkboxs.uppercase} onChange={checkboxChangeHandler('uppercase')} />
+        <Checkbox label="Lowercase" checked={checkboxs.lowercase} onChange={checkboxChangeHandler('lowercase')} />
+        <Checkbox label="Numbers" checked={checkboxs.numbers} onChange={checkboxChangeHandler('numbers')} />
+        <Checkbox label="Symbols" checked={checkboxs.symbols} onChange={checkboxChangeHandler('symbols')} />
       </div>
-      <Button onClick={onClickRegenerate}>Regenerate</Button>
+      <Button onClick={regenerateClickHandler}>Regenerate</Button>
     </form>
     <div className={cx('result')}>
       {password}
