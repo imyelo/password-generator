@@ -90,7 +90,7 @@ const App = () => {
 
   return <div className={cx('main')}>
     <div className={cx('header')} onClick={headerClickHandler}>
-      Password Generator
+      <span className={cx('title')}>Password Generator</span>
       <span className={cx('icon')}><Icon name="refresh" /></span>
     </div>
     <form className={cx('generator')}>
