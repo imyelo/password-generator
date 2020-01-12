@@ -15,6 +15,13 @@
 ## Online Version
 <https://password.yelo.ooo/>
 
+## Alternatives
+- [Random.org - Random Password Generator](https://www.random.org/passwords/)
+- [LastPass - Password Generator](https://www.lastpass.com/password-generator)
+- [1Password - Password Generator](https://1password.com/password-generator/)
+- [NordPass - Password Generator](https://nordpass.com/password-generator/)
+- [Avast - Random Password Generator](https://www.avast.com/random-password-generator)
+
 ## Development
 ### Install dependencies
 ```bash
